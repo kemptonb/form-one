@@ -1,1 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+}
 
+html, body {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-family: monospace;
+    color: black;
+    margin-top: 10em;
+    flex-direction: column;
+}
+
+fieldset {
+    display: flex;
+    padding: 1em;
+}
+
+legend {
+    font-size: 2em;
+    display: flex;
+}
+
+input {
+    display: flex;
+    margin: 0em 1em 0em 1em;
+
+}
+
+label {
+    display: flex;
+    
+}
+
+form {
+    display: flex;
+    padding: 1em;
+}
+
+#myInputautocomplete-list{
+    position: absolute;
+    margin-left: 1em;
+    
+}
+
+#myInputautocomplete-list > div {
+    background-color: white;
+    padding: 0.7em;
+}
+
+
+#myInputautocomplete-list > div:hover {
+    font-weight: bolder;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    text-decoration: none;
+}
