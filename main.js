@@ -1,5 +1,5 @@
 (() => {
-  
+
 
   //country
 
@@ -119,25 +119,25 @@
 
 
     //validate()
-    function validate (){
-     
-      let status = countries.includes(country.value.toString());
-    if (!status) {
-      country.setCustomValidity("");
-      country.reportValidity();
-      country.style.borderColor = "#ff8c00";
-      console.log(status);
-    } else {
-      country.setCustomValidity("");
-      country.style.borderColor = "revert";
-      console.log(status);
-    }
-    
-    
-  }//end validate()
+    function validate() {
 
-  validate();
-  
+      let status = countries.includes(country.value.toString());
+      if (!status) {
+        country.setCustomValidity("");
+        country.reportValidity();
+        country.style.borderColor = "#ff8c00";
+        console.log(status);
+      } else {
+        country.setCustomValidity("");
+        country.style.borderColor = "revert";
+        console.log(status);
+      }
+
+
+    }//end validate()
+
+    validate();
+
   });
 
   //email
@@ -173,6 +173,28 @@
       zip.style.borderColor = "#ff8c00";
     }
   });
+
+  //submit validate
+  const submit = document.getElementById("submit");
+  const inputs = document.getElementsByClassName("formInput");
+  
+  submit.addEventListener('click', () => {
+    
+  
+  });
+
+  // nameInput.addEventListener('input', () => {
+  //   nameInput.setCustomValidity('');
+  //   nameInput.checkValidity();
+  // });
+
+  // nameInput.addEventListener('invalid', () => {
+  //   if (nameInput.value === '') {
+  //     nameInput.setCustomValidity('Enter your username!');
+  //   } else {
+  //     nameInput.setCustomValidity('Usernames can only contain upper and lowercase letters. Try again!');
+  //   }
+  // });
 
 })();//end form-one
 
