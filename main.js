@@ -1,24 +1,12 @@
 (() => {
-  //email
-
-  const email = document.getElementById("email");
-
-  email.addEventListener("input", function (event) {
-    if (email.validity.typeMismatch) {
-      email.setCustomValidity("invalid email");
-      email.reportValidity();
-      email.style.borderColor = "red";
-    } else {
-      email.setCustomValidity("");
-      email.style.borderColor = "revert";
-    }
-  });
+  
 
   //country
 
   const country = document.getElementById("myInput");
 
   country.addEventListener("input", function (event) {
+
     function autocomplete(inp, arr) {
       /*the autocomplete function takes two arguments,
       the text field element and an array of possible autocompleted values:*/
@@ -28,7 +16,9 @@
         let a, b, i, val = this.value;
         /*close any already open lists of autocompleted values*/
         closeAllLists();
-        if (!val) { return false; }
+        if (!val) {
+          return false;
+        }
         currentFocus = -1;
         /*create a DIV element that will contain the items (values):*/
         a = document.createElement("DIV");
@@ -51,6 +41,7 @@
             b.addEventListener("click", function (e) {
               /*insert the value for the autocomplete text field:*/
               inp.value = this.getElementsByTagName("input")[0].value;
+              validate();
               /*close the list of autocompleted values,
               (or any other open lists of autocompleted values:*/
               closeAllLists();
@@ -126,12 +117,42 @@
     /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
     autocomplete(document.getElementById("myInput"), countries);
 
-    //error filter
-    // if (countries.includes(country.value)) {
-    //   country.setCustomValidity("invalid country");
-    //   country.reportValidity();
-    //   country.style.borderColor = "yellow";
-    // }
+
+    //validate()
+    function validate (){
+     
+      let status = countries.includes(country.value.toString());
+    if (!status) {
+      country.setCustomValidity("");
+      country.reportValidity();
+      country.style.borderColor = "#ff8c00";
+      console.log(status);
+    } else {
+      country.setCustomValidity("");
+      country.style.borderColor = "revert";
+      console.log(status);
+    }
+    
+    
+  }//end validate()
+
+  validate();
+  
+  });
+
+  //email
+
+  const email = document.getElementById("email");
+
+  email.addEventListener("input", function (event) {
+    if (email.validity.typeMismatch) {
+      email.setCustomValidity("invalid email");
+      email.reportValidity();
+      email.style.borderColor = "#ff8c00";
+    } else {
+      email.setCustomValidity("");
+      email.style.borderColor = "revert";
+    }
   });
 
   //zip
@@ -149,7 +170,7 @@
     } else {
       zip.setCustomValidity("invalid ZIP");
       zip.reportValidity();
-      zip.style.borderColor = "red";
+      zip.style.borderColor = "#ff8c00";
     }
   });
 

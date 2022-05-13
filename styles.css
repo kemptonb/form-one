@@ -15,40 +15,55 @@ html, body {
 
 fieldset {
     display: flex;
+}
+
+form {
     padding: 1em;
 }
 
 legend {
     font-size: 2em;
-    display: flex;
+    margin:0 auto;
+    font-weight: bold;
 }
 
 input {
-    display: flex;
-    margin: 0em 1em 0em 1em;
+    border-width: 2px;
+    margin:0 auto;
+    text-align: center; 
+}
 
+button {
+    background-color: transparent;
+    margin-top: 1.5em;
+    margin-bottom: 1em;
 }
 
 label {
-    display: flex;
-    
+    margin:0 auto;
+    margin: 0.8em;
+    text-align: center;
+    font-size: 1.2em;
 }
 
 form {
     display: flex;
-    padding: 1em;
+    flex-direction: column;
 }
 
 #myInputautocomplete-list{
     position: absolute;
-    margin-left: 1em;
+    
+    
+    
     
 }
 
 #myInputautocomplete-list > div {
     background-color: white;
-    padding: 0.7em;
+    border-color: black;
 }
+
 
 
 #myInputautocomplete-list > div:hover {
@@ -60,4 +75,12 @@ form {
     -ms-user-select: none;
     user-select: none;
     text-decoration: none;
+}
+
+input:focus, input.form-control:focus {
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
 }
