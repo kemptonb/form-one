@@ -1,15 +1,13 @@
 (() => {
 
-
   //country
-
   const country = document.getElementById("myInput");
-  const autoList = document.getElementById("#myInputautocomplete-list");
+  let autoValidate = false;
 
   country.addEventListener('keydown', function (event) {
     //erase all input content on backspace
     const key = event.key;
-      
+
     //autocomplete
     function autocomplete(inp, arr) {
       /*the autocomplete function takes two arguments,
@@ -46,6 +44,8 @@
               /*insert the value for the autocomplete text field:*/
               inp.value = this.getElementsByTagName("input")[0].value;
               validate();
+              autoValidate = true;
+              console.log(autoValidate);
               /*close the list of autocompleted values,
               (or any other open lists of autocompleted values:*/
               closeAllLists();
@@ -54,8 +54,6 @@
           }
         }
       });
-
-
 
       function addActive(x) {
         /*a function to classify an item as "active":*/
@@ -91,14 +89,14 @@
         closeAllLists(e.target);
       });
 
-      //erase all characters o backspace
+      //erase all characters on "keydown" backspace
       if (key === "Backspace") {
         country.value = "";
         closeAllLists();
+        autoValidate = false;
+        console.log(autoValidate);
       }
     }
-
-   
 
     /*An array containing all the country names in the world:*/
     var countries = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua & Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia & Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central Arfrican Republic", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cuba", "Curacao", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauro", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre & Miquelon", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "St Kitts & Nevis", "St Lucia", "St Vincent", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad & Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks & Caicos", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States of America", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"];
@@ -106,33 +104,36 @@
     /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
     autocomplete(document.getElementById("myInput"), countries);
 
-   
-
-
     //validate()
     function validate() {
-
       let status = countries.includes(country.value.toString());
       if (!status) {
         country.setCustomValidity("");
         country.reportValidity();
         country.style.borderColor = "#ff8c00";
-      } else {
+      }
+      else {
         country.setCustomValidity("");
         country.style.borderColor = "revert";
       }
-
-
     }//end validate()
 
     validate();
+
+    //form validate
+    document.querySelector("#submit").addEventListener("click", function (event) {
+      if(!autoValidate){
+        event.preventDefault();
+      }
+      
+    }, false);
 
   });//end country autocomplete
 
   //email
 
   const email = document.getElementById("email");
- 
+
 
   email.addEventListener("input", function (event) {
     if (email.validity.typeMismatch) {
@@ -165,14 +166,3 @@
   });
 
 })();//end form-one
-
-
-
-
-
-
-
-
-
-
-
