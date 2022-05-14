@@ -43,9 +43,9 @@
             b.addEventListener("click", function (e) {
               /*insert the value for the autocomplete text field:*/
               inp.value = this.getElementsByTagName("input")[0].value;
+              country.style.borderColor = "revert";
               validate();
               autoValidate = true;
-              console.log(autoValidate);
               /*close the list of autocompleted values,
               (or any other open lists of autocompleted values:*/
               closeAllLists();
@@ -90,12 +90,12 @@
       });
 
       //erase all characters on "keydown" backspace
-      if (key === "Backspace") {
+      if (key && autoValidate == true) {//=== "Backspace"
         country.value = "";
         closeAllLists();
         autoValidate = false;
-        console.log(autoValidate);
       }
+
     }
 
     /*An array containing all the country names in the world:*/
@@ -112,28 +112,29 @@
         country.reportValidity();
         country.style.borderColor = "#ff8c00";
       }
-      else {
+      else if(status && autoValidate) {
         country.setCustomValidity("");
         country.style.borderColor = "revert";
+        event.preventDefault();
       }
     }//end validate()
 
     validate();
 
     //form validate
+    const message = document.getElementById("message");
+    
     document.querySelector("#submit").addEventListener("click", function (event) {
-      if(!autoValidate){
+      if (!autoValidate) {
         event.preventDefault();
+        message.textContent = "*errors in orange";
       }
-      
     }, false);
 
   });//end country autocomplete
-
+  
   //email
-
   const email = document.getElementById("email");
-
 
   email.addEventListener("input", function (event) {
     if (email.validity.typeMismatch) {
