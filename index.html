@@ -13,25 +13,24 @@
     <fieldset>
         <legend>FORM</legend>
 
-        <form autocomplete="off">
-        <!-- action="example.com/path" method="post"> -->
+        <form autocomplete="off"><!-- action="example.com/path" method="post"> -->
             
+
             <label for="country">country:</label>
             <div class="autocomplete">
-            <input id="myInput" type="text" name="country" class="formInput">
+                <input id="myInput" type="text" name="country" required>
             </div>
 
             <label for="email">email:</label>
-            <input type="email" id="email" name="email" class="formInput">
+            <input type="email" id="email" name="email" required>
 
             <label for="zip_code">zip:</label>
-            <input type="text" id="zip_code" name="zip_code" class="formInput" maxlength="5">
+            <input type="text" id="zip_code" name="zip_code" maxlength="5" required>
 
             <label for="user_password">password:</label>
-            <input type="password" id="user_password" name="password" class="formInput">
+            <input type="password" id="user_password" name="password" required>
 
-            <button id="submit">SUBMIT</button>
-            <!-- type="submit" -->
+            <button type="submit" id="submit">SUBMIT</button>
 
         </form>
 
